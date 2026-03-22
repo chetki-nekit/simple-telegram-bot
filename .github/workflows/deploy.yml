@@ -28,13 +28,13 @@ deploy:
   runs-on: ubuntu-latest
   steps:
 name: Deploy via SSH
-    uses: appleboy/ssh-action@v1
-    with:
-      host: ${{ secrets.SSH_HOST }}
-      username: ${{ secrets.SSH_USER }}
-      key: ${{ secrets.SSH_PRIVATE_KEY }}
-      script: |
-        docker pull ${{ secrets.DOCKER_HUB_USER }}/telegram-bot:latest
-        docker stop telegram-bot || true
-        docker rm   telegram-bot || true
-        docker run -d --name telegram-bot --restart unless-stopped -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} ${{ secrets.DOCKERHUB_USER }}/telegram-bot:latest
+  uses: appleboy/ssh-action@v1
+  with:
+    host: ${{ secrets.SSH_HOST }}
+    username: ${{ secrets.SSH_USER }}
+    key: ${{ secrets.SSH_PRIVATE_KEY }}
+    script: |
+      docker pull ${{ secrets.DOCKER_HUB_USER }}/telegram-bot:latest
+      docker stop telegram-bot || true
+      docker rm   telegram-bot || true
+      docker run -d --name telegram-bot --restart unless-stopped -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} ${{ secrets.DOCKERHUB_USER }}/telegram-bot:latest
