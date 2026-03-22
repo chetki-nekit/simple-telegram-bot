@@ -46,4 +46,3 @@ Sends the user a video from Youtube's trend videos randomly.
 
 Send user a news from BBC's most read news
 
-HJD
